@@ -1,29 +1,26 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(MyApp());
+  SystemUiOverlayStyle light = SystemUiOverlayStyle(
+    systemNavigationBarColor: Colors.transparent,
+    statusBarColor: Colors.transparent,
+    statusBarBrightness: Brightness.dark,
+    statusBarIconBrightness: Brightness.light,
+  );
+  SystemChrome.setSystemUIOverlayStyle(light);
 }
 
 class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-//    MediaQueryData mediaQueryData = MediaQuery.of(context);
-//    print(mediaQueryData.size.width);
-//    print(mediaQueryData.size.height);
-//    print(mediaQueryData.padding.top);
-//    print(mediaQueryData.devicePixelRatio);
+    precacheImage(AssetImage("images/bg_splash.png"), context);
     return MaterialApp(
-      home: Scaffold(
-        body: Container(
-          child: Image.asset("images/bg_splash.png",
-            fit: BoxFit.fill,
-            repeat: ImageRepeat.repeat,),
-          alignment: Alignment.bottomCenter,
-
-        ),
-      ),
+      home: Image (image: AssetImage("images/bg_splash.png"),),
     );
   }
 }
